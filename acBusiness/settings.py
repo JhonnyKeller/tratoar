@@ -25,7 +25,7 @@ STATIC_DIR = BASE_DIR / 'static'
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = str(config(SECRET_KEY))
+SECRET_KEY = str(config('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(config('DEBUG')) == "1" # 1 == "True"
@@ -163,16 +163,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    STATIC_DIR,
-]
 
-# MEDIA_DIR
+
+# STATIC AND MEDIA SETUP
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR , 'media')
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR , 'static')
 
 LOGIN_REDIRECT_URL = 'home'
