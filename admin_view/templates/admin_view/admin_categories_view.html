@@ -1,0 +1,70 @@
+{% extends 'admin_base.html' %}
+{% load crispy_forms_tags %}
+{% block preadmin %}
+
+ <div class="row">
+   <h4 class="text-center border-bottom">Criar Categoria</h4>
+   <div class="col-12">
+     <form class="" method="post">
+       {% csrf_token %}
+      {{categories_form|crispy}}
+      <input style="display:none;" name="subcategorie_istrue" value="False">
+      {% if searched_cat %}
+      <input style="display:none;" name="searched_cat" value="{{searched_cat}}">
+      {% endif %}
+      <div class="d-grid gap-2 ">
+        <button class="btn btn-primary mt-2" name="categorie_istrue" value="True">Criar Categoria</button>
+      </div>
+
+     </form>
+   </div>
+   <div class="col-12 mt-5">
+     <h4 class="text-center border-bottom">Criar SubCategoria</h4>
+     <form class=""  method="post">
+       {% csrf_token %}
+       {{subcategories_form|crispy}}
+       <input style="display:none;" name="categorie_istrue" value="False">
+       {% if searched_cat %}
+       <input style="display:none;" name="searched_cat" value="{{searched_cat}}">
+       {% endif %}
+       <div class="d-grid gap-2 ">
+         <button class="btn btn-primary mt-2" name="subcategorie_istrue" value="True">Criar Sub Categoria</button>
+       </div>
+
+     </form>
+   </div>
+ </div>
+
+
+<div class="row mt-4">
+   <div class="col-12">
+   <form  method="post">
+     {% csrf_token %}
+     <select name="searched_cat" class="form-select"  aria-label="Default select example">
+       {% if searched_cat %}
+       <option name="searched_cat" class="options" value="Todas">Todas</option>
+       <option name="searched_cat" style='display: none;'  value="{{searched_cat}}" selected>{{searched_cat}}</option>
+       {% else %}
+       <option name="searched_cat" class="options" value="Todas" selected>Todas</option>
+       {% endif %}
+
+       {% for categorie in categories %}
+       <option name="searched_cat" class="searchBars options"  value="{{ categorie.title }}">{{ categorie.title }}</option>
+       {% endfor %}
+     </select>
+     <input style="display:none;" name="categorie_istrue" value="False">
+     <input style="display:none;" name="subcategorie_istrue" value="False">
+     <button type="submit" class="btn btn-primary mt-2" name="" value="">Procurar</button>
+   </form>
+</div>
+<div class="col-12">
+  <h5 class="text-center border-bottom pb-2 mb-2">Categoria: {{searched_categorie}}</h5>
+  {% for subcat in searched_subcategories %}
+  <p class="text-center">{{subcat.title}}</p>
+  {% endfor %}
+
+</div>
+
+ </div>
+
+{% endblock %}

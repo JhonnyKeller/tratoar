@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <div class="container  mt-5" style="height:auto;">
+    <div class="admin_base">
+      <div class="row">
+        <div class="col-md-3 col-12 mb-3">
+          <div class="d-grid gap-2 ">
+            <h3 class="border-bottom text-center">Menu</h3>
+            <a class="btn btn-primary" href="{% url 'admin_view:admin_budget_view' %}">Orçamentos</a>
+            <a class="btn btn-primary" href="{% url 'admin_view:admin_brand_view' %}">Marcas</a>
+            <a class="btn btn-primary" href="{% url 'admin_view:admin_categorie_view' %}">Categorias</a>
+            <a class="btn btn-primary" href="{% url 'admin_view:admin_product_view' %}">Produtos</a>
+          </div>
+
+        </div>
+        <div class="col-md-9 col-12">
+          {% block preadmin %}{% endblock %}
+        </div>
+      </div>
+    </div>
+    </div>
+    {% block afteradmin %} {% endblock %}
+
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+
+
+
+{% if detail_view == 'True' %}
+
+<div class="row mt-4">
+  {% for budget in budget %}
+  {% include 'basic_app/_budget_detail.html' %}
+  {% endfor %}
+</div>
+
+{% include 'admin_view/_ac_search_by_potency.html' %}
+
+{% else %}
+
+{% include 'admin_view/_budget_search_bar.html' %}
+
+{% for budget in budget %}
+{% include 'basic_app/_budget.html' %}
+{% endfor %}
+
+
+{% endif %}
+
+</div>
+
+{% endblock %}

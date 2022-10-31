@@ -1,0 +1,11 @@
+{% extends 'brands/brand_base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+ <div class="container">
+   {{ acbrands.title }}
+   <a href="{% url 'brands:brand_updateview' pk=acbrands.pk %}">UpdateView</a>
+ </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{# at the terminal, run pip install django-bootstrap4 #}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container">
+
+  <h5>Iniciar Sessão:</h5>
+    <form action="{% url 'basic_app:login' %}" method="post">
+      {% csrf_token %}
+      <label for="username">Username:</label>
+      <input type="text" name="username" placeholder="enter username">
+
+      <label for="password">Password:</label>
+      <input type="password" name="password">
+
+      <input type="submit" name="" value="Login">
+      <a href="{% url 'basic_app:signup' %}" class="btn btn-primary">Criar Conta</a>
+      <p><a href="{% url 'basic_app:password_reset' %}">Recuperar password</a></p>
+
+    </form>
+</div>
+{% endblock %}

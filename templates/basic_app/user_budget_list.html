@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+	<div class="container">
+		<br>
+		<h3>{{ user.username }}</h3>
+		<legend class="border-bottom mb-4">Orçamentos pedidos</legend>
+	</div>
+
+	<div class="row">
+		{% for budget in budget_list %}
+			{% include "basic_app/_budget.html" %}
+		{% endfor %}
+	</div>
+</div>
+
+{% endblock %}

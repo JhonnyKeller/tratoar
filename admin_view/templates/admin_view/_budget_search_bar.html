@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-12">
+    <!-- Search bar and filters -->
+<div class="container maxheight border-bottom mb-4">
+<form class=""  method="post">
+{% csrf_token %}
+<div class="row justify-content-center">
+<div class="col-10">
+ <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+ <div class="wrapper">
+   <div class="searchBar">
+     <!-- categorie search -->
+     <select name="sc_status" class="form-select searchBars" style='width=70px;!important' aria-label="Default select example">
+       {% if searched_status %}
+       <option name="sc_status" class="options" value="Todos">Todos</option>
+       <option name="sc_status" style='display: none;'  value="{{searched_status}}" selected>{{searched_status}}</option>
+       {% else %}
+       <option name="sc_status" class="options" value="Todos" selected>Todos</option>
+       {% endif %}
+       <option name="sc_status" class="searchBars options"  value="Aguarda Orçamento">Aguarda Orçamento</option>
+       <option name="sc_status" class="searchBars options"  value="Requer-se mais informação">Requer-se mais informação</option>
+       <option name="sc_status" class="searchBars options"  value="Orçamento enviado">Orçamento enviado</option>
+       <option name="sc_status" class="searchBars options"  value="Requer-se mais informação">Orçamento sem efeito</option>
+     </select>
+     <!-- Date search -->
+     <input class="form-select searchBars" type="datetime-local" name="sc_date" value="searched_date">
+     <!-- search start -->
+     <input id="searchQueryInput" class="ml-3" type="text" name="sc_useremail" placeholder="Username/Email" value="{{searched_useremail}}" />
+     <button id="searchQuerySubmit" name="search_budget_view_istrue" value="True" type="submit">
+       <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+       </svg>
+     </button>
+     <!-- hidden inputs -->
+     <input type="hidden" style="display:none;" name="detail_view_istrue" value="False">
+     <input type="hidden" style="display:none;" name="user_pk" value="{{user.pk}}">
+   </div>
+ </div>
+</div>
+</div>
+</form>
+</div>
+  </div>
+
+</div>

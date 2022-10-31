@@ -1,0 +1,24 @@
+{% extends 'admin_base.html' %}
+{% block preadmin %}
+
+
+{% if detail_view == 'True' %}
+
+{% for budget in budget %}
+{% include 'basic_app/_budget_detail.html' %}
+{% endfor %}
+
+{% include 'admin_view/_ac_search_by_potency.html' %}
+
+{% else %}
+
+{% include 'admin_view/_budget_search_bar.html' %}
+
+{% for budget in budget %}
+{% include 'basic_app/_budget.html' %}
+{% endfor %}
+
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'admin_base.html' %}
+{% load crispy_forms_tags %}
+{% block preadmin %}
+
+ <div class="row">
+   <div class="col-12">
+     <form class="" enctype="multipart/form-data" method="post">
+       {% csrf_token %}
+      {{acbrands_form|crispy}}
+      <button  class="btn btn-primary mt-2 mb-3" name="brand_istrue" value="True">Criar Marca</button>
+     </form>
+   </div>
+
+ </div>
+ <div class="row">
+   <p class="text-center border-bottom">Marcas</p>
+
+   <div class="col-12 col-md-6">
+
+   {% for brand in brands %}
+
+     <h5>{{brand.title}}</h5>
+     <p><a href="{{brand.brand_url}}">{{brand.brand_url}}</a></p>
+     {% if brand.brand_img %}
+     <img src="{{brand.brand_img}}" style='max-height:8rem;' alt="">
+     {% endif %}
+      <!-- button trigger modal -->
+      <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="brand_pk" value="{{brand.pk}}">
+       <button type="submit" name="delete_brand_istrue" value="True" class="btn btn-danger">
+       Eliminar Marca
+       </button>
+       </form>
+   {% endfor %}
+   </div>
+ </div>
+
+{% endblock %}

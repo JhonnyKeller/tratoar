@@ -1,0 +1,56 @@
+<div class="mb-1 col-12 justify-content-center">
+	<div class="card">
+	  <div class="card-header ">
+			<div class="row">
+				<div class="col-md-11">
+					<h5 class="text-nowrap" style="width: 8rem;" >{{ budget.user.username }}</h5>
+				</div>
+				<div class="col-md-1 col-12">
+					<h5 class="text-right">000{{budget.pk}}</h5>
+				</div>
+			</div>
+	  </div>
+	  <div class="card-body">
+			<div class="row">
+				<div class="col-md-9 col-12">
+					<p class="card-text">
+						Email: {{budget.email}}<br>
+						Telemovel: {{budget.phone_number}}<br>
+						Código Postal:{{ budget.zip_code|safe }} <br>
+						Morada: {{ budget.address|safe }}<br>
+            Tipo de instalação: {{budget.Instalation}}<br>
+            Descrição: {{budget.budget_text}}<br><br>
+
+            Divisao 1: {{budget.Division_1}} Area: {{budget.Area_1}}<br>
+            {% if budget.Division_2 != '' %}
+            Divisao 2: {{budget.Division_2}} Area: {{budget.Area_2}}<br>
+            {% endif %}
+
+
+					</p>
+            {% if user.is_superuser %}
+            <a href="{% url 'basic_app:delete' pk=budget.pk %}" title="delete" class="btn btn-simple">
+							<span class="fa fa-remove text-danger" aria-hidden="true"></span>
+							<span class="text-danger icon-label">Delete</span>
+						</a>
+            <form  method="post">
+							<!-- <input type="" style="display:none;" name="search_budget_view_istrue" value="False"> -->
+							{% csrf_token %}
+							<button type="submit" class="btn btn primary" name="clicked_budget" value="{{budget.pk}}">Details</button>
+						</form>
+            {% else %}
+            {% endif %}
+
+
+				</div>
+				<div class="col-md-3 col-12">
+					<p class="card-title text-bottom"><time class="time">{{ budget.created_at }}</time></p>
+					<br>
+					<br>
+					<br>
+					<span class="align-bottom"><p><b>Status:</b> {{budget.status}}</p></span>
+				</div>
+			</div>
+	  </div>
+	</div>
+</div>

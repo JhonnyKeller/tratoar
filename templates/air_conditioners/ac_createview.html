@@ -1,0 +1,11 @@
+{% extends 'air_conditioners/ac_base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container">
+  <form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button class="btn btn-primary mt-2" type="submit">Criar ar condicionado</button>
+  </form>
+</div>
+{% endblock %}

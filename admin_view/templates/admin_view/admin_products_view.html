@@ -1,0 +1,40 @@
+{% extends 'admin_base.html' %}
+{% load crispy_forms_tags %}
+{% block preadmin %}
+
+<div class="row">
+  <div class="col-12">
+    <form class="" enctype="multipart/form-data" method="post">
+      {% csrf_token %}
+      {{ product_form|crispy }}
+      <input type="hidden" name="product_istrue" value="False">
+      <input type="hidden" name="searched_ac" value="{{searched_ac}}">
+      <input type="hidden" name="ac_brand" value="{{searched_brand}}">
+      <input type="hidden" name="sc_potency" value="{{searched_potency}}">
+      <input type="hidden" name="sc_categorie" value="{{searched_categorie}}">
+      <input type="hidden" name="sc_subcategorie" value="{{searched_subcategorie}}">
+      <input type="hidden" name="delete_object_istrue" value="False">
+      <button  class="btn btn-primary mt-2" name="product_istrue" value="True">Criar Produto</button>
+    </form>
+
+    {% if error_message == 'True' %}
+      <p  style="color:red;">Produto não criado, por favor introduza os dados correctos.</p>
+    {% endif %}
+
+  </div>
+
+  {% endblock %}
+
+{% block afteradmin %}
+          {% include 'air_conditioners/_include_searchbar.html' %}
+    <div class=" col-9">
+      <div class="row justify-content-center">
+        {% include 'air_conditioners/_ac_search.html' %}
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

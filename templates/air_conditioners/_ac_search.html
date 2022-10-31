@@ -1,0 +1,126 @@
+
+
+
+
+{% if airconditioner %}
+      {% for ac in airconditioner %}
+      <div class="col-sm">
+        <div class="card min-width max-width mb-2">
+        {% if ac.ac_img %}
+          <img src="{{ ac.ac_img.url }}" style='max-height:8rem;' class="card-img-top" alt="...">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ ac.title }}</h5>
+            <h6><p>{{ ac.brand }}</p></h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div class="row">
+              <div class="col-4">
+                <form action="{% url 'air_conditioners:ac_detailview' %}" method="post">
+                  {% csrf_token %}
+                  <button class="btn btn-primary" name="product_pk" value="{{ac.pk}}">Details</button>
+                </form>
+              </div>
+              {% if user.is_superuser %}
+              <div class="col-4">
+                <a class="btn btn-primary" href="{% url 'air_conditioners:ac_updateview' pk=ac.pk %}">Update</a>
+              </div>
+              <div class="col-4">
+                <form method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="product_istrue" value="False">
+                  <input type="hidden" name="go_next_istrue" value="False">
+                  <input type="hidden" name="go_false_istrue" value="False">
+                  <input type="hidden" name="saved_page_number" value="{{page_number}}">
+                  <input type="hidden" name="searched_ac" value="{{searched_ac}}">
+                  <input type="hidden" name="ac_brand" value="{{searched_brand}}">
+                  <input type="hidden" name="sc_potency" value="{{searched_potency}}">
+                  <input type="hidden" name="sc_categorie" value="{{searched_categorie}}">
+                  <input type="hidden" name="sc_subcategorie" value="{{searched_subcategorie}}">
+                  <input type="hidden" name="object_pk" value="{{ac.pk}}">
+                  <button  class="btn btn-danger" name="delete_object_istrue" value="True" >Delete</button>
+                </form>
+              </div>
+              {% endif %}
+            </div>
+        </div>
+        </div>
+        </div>
+
+       {% endfor %}
+       <div class="row justify-content-center border-top mt-3 pt-3">
+         <div class="col-1 text-center">
+           {% if hide_go_back == 'True' %}
+           {% else %}
+           <form  method="post">
+             {% csrf_token %}
+             <input type="hidden" name="product_istrue" value="False">
+             <input type="hidden" name="delete_object_istrue" value="False">
+             <input type="hidden" name="go_next_istrue" value="False">
+             <input type="hidden" name="page_start" value="{{page_start}}">
+             <input type="hidden" name="page_end" value="{{page_end}}">
+             <input type="hidden" name="saved_page_number" value="{{saved_page_number}}">
+             <input type="hidden" name="searched_ac" value="{{searched_ac}}">
+             <input type="hidden" name="ac_brand" value="{{searched_brand}}">
+             <input type="hidden" name="sc_potency" value="{{searched_potency}}">
+             <input type="hidden" name="sc_categorie" value="{{searched_categorie}}">
+             <input type="hidden" name="sc_subcategorie" value="{{searched_subcategorie}}">
+
+             <button type="submit" class="btn btn-secondary" name="go_back_istrue" value="True">anterior</button>
+           </form>
+           {% endif %}
+           </div>
+           <div class="col-3 ps-5 pe-5 text-center">
+             <form method="post">
+             <div class="row justify-content-center">
+               <div class="col-6">
+                 {% csrf_token %}
+                 <input type="hidden" name="product_istrue" value="False">
+                 <input type="hidden" name="saved_page_number" value="{{saved_page_number}}">
+                 <input type="hidden" name="delete_object_istrue" value="False">
+                 <input type="hidden" name="go_back_istrue" value="False">
+                 <input type="hidden" name="go_next_istrue" value="False">
+                 <input type="hidden" name="page_start" value="{{page_start}}">
+                 <input type="hidden" name="page_end" value="{{page_end}}">
+                 <input type="hidden" name="searched_ac" value="{{searched_ac}}">
+                 <input type="hidden" name="ac_brand" value="{{searched_brand}}">
+                 <input type="hidden" name="sc_potency" value="{{searched_potency}}">
+                 <input type="hidden" name="sc_categorie" value="{{searched_categorie}}">
+                 <input type="hidden" name="sc_subcategorie" value="{{searched_subcategorie}}">
+
+               <select name="go_to_page" class="form-select " aria-label="Default select example">
+                <option selected name='go_to_page' value="{{saved_page_number}}">{{saved_page_number}}</option>
+                {% for page in pages %}
+                  <option name="go_to_page" value="{{page}}">{{page}}</option>
+                {% endfor %}
+              </select>
+               </div>
+               <div class="col-4">
+                 <button type="submit" class="btn btn-primary" name="go_to_page_istrue" value="True">Go</button>
+               </div>
+
+             </div>
+             </form>
+           </div>
+           <div class="col-1 text-center">
+           <form  method="post">
+             {% csrf_token %}
+             <input type="hidden" name="product_istrue" value="False">
+             <input type="hidden" name="saved_page_number" value="{{saved_page_number}}">
+             <input type="hidden" name="delete_object_istrue" value="False">
+             <input type="hidden" name="go_back_istrue" value="False">
+             <input type="hidden" name="page_start" value="{{page_start}}">
+             <input type="hidden" name="page_end" value="{{page_end}}">
+             <input type="hidden" name="searched_ac" value="{{searched_ac}}">
+             <input type="hidden" name="ac_brand" value="{{searched_brand}}">
+             <input type="hidden" name="sc_potency" value="{{searched_potency}}">
+             <input type="hidden" name="sc_categorie" value="{{searched_categorie}}">
+             <input type="hidden" name="sc_subcategorie" value="{{searched_subcategorie}}">
+
+             <button type="submit" class="btn btn-secondary" name="go_next_istrue" value="True">próxima</button>
+           </form>
+
+         </div>
+       </div>
+  {% else %}
+    <h1>Nada encontrado, por favor tente outra pesquisa.</h1>
+  {% endif %}

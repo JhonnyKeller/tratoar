@@ -1,0 +1,23 @@
+{% extends 'brands/brand_base.html' %}
+{% block content %}
+{% load bootstrap4 %}
+<div class="container">
+  <h1>hello</h1>
+
+
+  {% for brand in acbrands_list %}
+
+   <h2>{{ brand.title }}</h2>
+   <h4>
+     <a href="{% url 'brands:brand_detailview' pk=brand.pk %}">Details</a>
+     <p><a href="{% url 'brands:brand_deleteview' pk=brand.pk %}">Delete</a></p>
+   </h4>
+
+
+   {% endfor %}
+
+
+</div>
+
+
+{% endblock %}

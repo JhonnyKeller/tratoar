@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Orçamento de ar condicionado</h2>
+          <p>Instalações e manutenções.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+            <img src="{% static 'img/area.jpg' %}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <h4 class="mb-4" >Informação necessária para realizarmos o seu orçamento:</h4>
+            <h6>
+            <p>
+              <i class="bx bx-chevron-right mb-4"></i>O seu contacto atualizado, morada e código postal.<br>
+              <i class="bx bx-chevron-right mb-4"></i>Área aproximada da divisão a climatizar.<br>
+              <i class="bx bx-chevron-right mb-4"></i>Quantas divisões vão necessitar de instalação.<br>
+              <i class="bx bx-chevron-right mb-4"></i>Se tem pré instalação feita ou não.<br>
+              <i class="bx bx-chevron-right mb-4"></i>Se tem pré instalação feita ou não.<br>
+              <i class="bx bx-chevron-right mb-4"></i>Se a instalação vai ser multisplit (uma unidade exterior ligada a varias unidades interiores.) ou monosplit.<br>
+            </p>
+            </h6>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End About Section -->
+
+
+
+<div class="container">
+  <br>
+  <h5 class="border-bottom" >Por favor insirir os dados para realizar o orçamento:</h5>
+  <div class="row">
+    <div class="col-md-10">
+      <form enctype="multipart/form-data" method="post">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col col-md-3 ">
+          {{ form.zip_code|as_crispy_field }}
+        </div>
+        <div class="col-md-4 ">
+          {{ form.address|as_crispy_field }}
+        </div>
+        <div class="col col-md-6 ">
+          {{ form.name|as_crispy_field }}
+        </div>
+        <div class="col col-md-6 ">
+          {{ form.phone_number|as_crispy_field }}
+        </div>
+        <div class="col col-md-6 ">
+          {{ form.email|as_crispy_field }}
+        </div>
+      </div>
+
+      {{ form.Instalation|as_crispy_field }}
+      {{ form.budget_text|as_crispy_field }}
+      <div class="col-12 col-md-6">
+
+
+      <div class="row">
+        <div class="col-6 ">
+          {{ form.Division_1|as_crispy_field }}
+        </div>
+        <div class="col-6 ">
+          {{ form.Area_1|as_crispy_field }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 ">
+          {{ form.Division_2|as_crispy_field }}
+        </div>
+        <div class="col-6 ">
+          {{ form.Area_2|as_crispy_field }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          {{ form.Division_3|as_crispy_field }}
+        </div>
+        <div class="col-6">
+          {{ form.Area_3|as_crispy_field }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          {{ form.Division_4|as_crispy_field }}
+        </div>
+        <div class="col-6">
+          {{ form.Area_4|as_crispy_field }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          {{ form.Division_5|as_crispy_field }}
+        </div>
+        <div class="col-6">
+          {{ form.Area_5|as_crispy_field }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          {{ form.Division_6|as_crispy_field }}
+        </div>
+        <div class="col-6">
+          {{ form.Area_6|as_crispy_field }}
+        </div>
+      </div>
+      </div>
+      {{ form.File_1|as_crispy_field }}
+      {{ form.File_2|as_crispy_field }}
+      {{ form.File_3|as_crispy_field }}
+      {{ form.File_4|as_crispy_field }}
+      {{ form.File_5|as_crispy_field }}
+      {{ form.captcha|as_crispy_field }}
+
+      <button type="submit" class="btn btn-primary mt-2">Criar Orçamento</button>
+    </form>
+
+    </div>
+  </div>
+
+
+</div>
+{% endblock %}

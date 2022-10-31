@@ -1,0 +1,24 @@
+
+{% if searched_ac or potency_search %}
+    <br>
+      {% for ac in potency_search %}
+      <div class="col-md-3 col-sm-7 col-8">
+        <div class="card min-width mb-2" style="width: rem14; height: 24rem;">
+        {% if ac.ac_img %}
+          <img src="{{ ac.ac_img.url }}" style='max-height:8rem;' class="card-img-top" alt="...">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ ac.title }}</h5>
+            <h6><p>{{ ac.brand }}</p></h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a class="btn btn-primary" href="#">Details</a>
+              <a class="btn btn-primary" href="#">Update</a>
+              <a class="btn btn-primary" href="#">Delete</a>
+        </div>
+        </div>
+        </div>
+       {% endfor %}
+  {% else %}
+    <h1>Nada encontrado, por favor tente outra pesquisa.</h1>
+  {% endif %}
+</div>
