@@ -30,7 +30,7 @@ SECRET_KEY = str(config('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(config('DEBUG')) == "1" # 1 == "True"
 
-ALLOWED_HOSTS = ['167.99.3.153','localhost','www.tratoar.com','tratoar.com']
+ALLOWED_HOSTS = ['167.99.3.153','localhost','www.tratoar.com','tratoar.com','127.0.0.1']
 
 
 # Application definition
@@ -100,26 +100,25 @@ WSGI_APPLICATION = 'acBusiness.wsgi.application'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-# if DEBUG:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': BASE_DIR / 'db.sqlite3',
-#         }
-#     }
-# else:
-DATABASES = {
-        'default' : {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tratoardb',
-        'USER': 'mia',
-        'PASSWORD': str(config('DBONDATAPASS')),
-        'HOST': 'localhost',
-        'PORT': '',
+
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+            'default' : {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'tratoardb',
+            'USER': 'mia',
+            'PASSWORD': str(config('DBONDATAPASS')),
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
 
 
 # Password validation
